@@ -34,7 +34,7 @@ public class Automata {
 		
 		for(String str : estados) {
 			this.states.add(new States(str)); // guardo los estados
-			System.out.println(str.toString());
+			//System.out.println(str.toString());
 		}
 		
 		
@@ -77,44 +77,34 @@ public class Automata {
 		try {
 			aut = new Automata("C:\\Users\\fdsam\\OneDrive\\文档\\CC\\Automata de Pila\\Ficheros\\APv-2.txt");
 			//System.out.printf("fichero cargado");
-			
-			
+				
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		//System.out.println(aut.toString());
-		String cadena = "1111";
+		InputStreamReader isr = new InputStreamReader(System.in);
+		BufferedReader br = new BufferedReader (isr);		
+		String cadena = "";
+		System.out.println("Introduce la cadena a probar: ");
+		try {
+			cadena = br.readLine();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
 		if(aut.Comprobaciones(cadena)) {
 			System.out.println("La cadena se ACEPTA");
 		}else {
 			System.out.println("La cadena No se ACEPTA");
 		}
-		/*InputStreamReader isr = new InputStreamReader(System.in);	//Para leer de consola
-		BufferedReader br = new BufferedReader (isr);
 		
-		try {
-			String cadena = br.readLine();
-			entrada = Integer.parseInt(cadena);
-			
-			boolean aceptada = true;	//Para saber si la cadena cumple el alfabeto
-			do {
-				aceptada = true;
-				System.out.println("Introduce la cadena a probar: ");
-				cadena = br.readLine();
-				for(int i = 0; i < cadena.length(); i++)
-					if(!aut.chainAlfabet.pertenece(cadena.charAt(i)))
-						aceptada = false;	//Desde que un elemento no pertezca no se acepta
-				
-			}while(!aceptada);	//Hasta que se escriba una valida
-
-			
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 	}
-	
+	/*
+	 * 
+	 * */
 	public boolean Comprobaciones(String chain) {
 		
 		int transicion = 0;
@@ -124,8 +114,10 @@ public class Automata {
 		ArrayList<Integer> transiciones = new ArrayList<Integer>();
 		
 		for(States state : states) {
+			
 			if(state.getState().equals(actualEstado))
 				transiciones = state.searchTransitions(actualEstado, chain, initialStack); // primero transiciones
+			//System.out.print(state.searchTransitions(actualEstado, chain, initialStack));
 		}
 		stack.clear();
 		stack.add(initialStack); // añadir primer elemento en la pila
@@ -224,6 +216,7 @@ public class Automata {
 		
 		return cadena;
 	}
+	
 	
 
 }
