@@ -3,6 +3,10 @@ package TuringMachine;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * @author jiaqi
+ *
+ */
 public class Alfabeto {
 
 	private ArrayList<String> alfabet = new ArrayList<String>();//array de string para almacenar alfabetos

@@ -7,10 +7,14 @@ import java.io.InputStreamReader;
 public class Main {
 
 	public static void main(String[] argv) throws IOException {
-		//String a = "C:\\Users\\sam\\eclipse-workspace\\cc\\src\\MT\\Cambia0por1.txt";
-		String b = "C:\\Users\\sam\\eclipse-workspace\\cc\\src\\TuringMachine\\Ejemplo_MT.txt";
-		TuringMachine mt = new TuringMachine(b);
+		String a = "C:\\Users\\sam\\eclipse-workspace\\cc\\src\\MT\\Cambia0por1.txt";
+		//String b = "C:\\Users\\sam\\eclipse-workspace\\cc\\src\\TuringMachine\\Ejemplo_MT.txt";
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		String fileInpu;
+		System.out.println("Introduce el nombre del fichero :");
+		fileInpu = br.readLine();
+		TuringMachine mt = new TuringMachine(fileInpu);
+		
 		String input; 
 		
 		System.out.println("Introduce la cadena (exit para salir) ");		
@@ -20,6 +24,9 @@ public class Main {
 					System.out.println("La cadena " + input + " es aceptada por la máquina");
 				}else {
 					System.out.println("La cadena " + input + " ! NO es aceptada por la máquina");
+				}
+				for(int i = 0; i < mt.traza.size(); i++) {
+					System.out.println(mt.traza.get(i));
 				}
 			}
 		

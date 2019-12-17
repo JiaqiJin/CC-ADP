@@ -2,6 +2,10 @@ package TuringMachine;
 import java.util.*;
 import java.io.*;
 
+/**
+ * @author jiaqi
+ *
+ */
 public class TuringMachine {
 
 	Alfabeto alfabetoCinta;								//conjunto de símbolos del lenguaje
@@ -15,6 +19,9 @@ public class TuringMachine {
 	
 	public ArrayList traza;
 	
+	/**
+	 * @param filename
+	 */
 	public TuringMachine(String filename) {
 		this.transicionesPosibles = new ArrayList<Transition>();
 		
@@ -77,6 +84,10 @@ public class TuringMachine {
 	}
 	
 	
+	/**
+	 * @param cinta
+	 * @return
+	 */
 	Boolean compute(String cinta) {
 		this.traza = new ArrayList<MachineState>();
 		String tmp = new String(this.blanco + this.blanco);

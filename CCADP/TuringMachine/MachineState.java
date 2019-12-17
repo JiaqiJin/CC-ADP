@@ -2,7 +2,7 @@ package TuringMachine;
 import java.util.ArrayList;
 
 /**
- * @author sam
+ * @author jiaqi
  *
  */
 public class MachineState {

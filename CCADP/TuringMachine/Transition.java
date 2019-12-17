@@ -1,6 +1,10 @@
 package TuringMachine;
 import java.util.*;
 
+/**
+ * @author jiaqi
+ *
+ */
 public class Transition {
 
 	String estadoActual;
