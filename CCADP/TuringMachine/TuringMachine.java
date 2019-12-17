@@ -81,8 +81,46 @@ public class TuringMachine {
 		this.traza = new ArrayList<MachineState>();
 		String tmp = new String(this.blanco + this.blanco);
 		cinta = tmp + cinta + tmp;
+		String[] cintTemp = cinta.split("");
+		ArrayList<String> cintaMachine = new ArrayList<String>();
+		for(int i=0;i<cintTemp.length;i++) {
+			cintaMachine.add(cintTemp[i]);
+		}
 		
-		
+		Boolean fin = false;
+		this.estadoActual = new MachineState(this.estadoInicial,2,cintaMachine);
+		while(!fin) {
+			this.traza.add(new MachineState(this.estadoActual));
+			Boolean encontrado = false;
+			for(int i=0;i<transicionesPosibles.size();i++) {
+				if(transicionesPosibles.get(i).getEstadoActual().equals(this.estadoActual.getEstado())
+						&&transicionesPosibles.get(i).getLecturaCinta().equals(this.estadoActual.cinta.get(this.estadoActual.getPosHead()))) {
+					this.estadoActual.cinta.set(this.estadoActual.posHead, transicionesPosibles.get(i).getEscrituraCinta()); // posibles transiciones
+					this.estadoActual.setEstado(transicionesPosibles.get(i).estadoSiguiente);//actualizo al siguiente estado
+					if(transicionesPosibles.get(i).movimiento.equals("L")) {
+						this.estadoActual.setPosHead(this.estadoActual.getPosHead() - 1);
+					}
+					if(transicionesPosibles.get(i).movimiento.equals("R")) {
+						this.estadoActual.setPosHead(this.estadoActual.getPosHead() + 1);
+					}
+					if(this.estadoActual.getPosHead() < 0) {
+						this.estadoActual.cinta.add(0, ".");
+					}
+					if(this.estadoActual.getPosHead() > this.estadoActual.getCinta().size() - 1) {
+						this.estadoActual.cinta.add(".");
+					}
+					encontrado = true;
+				}
+			}
+			if(!encontrado) {
+				fin = true;
+			}
+		}
+		if(this.estadosfinales.contains(this.estadoActual.getEstado())) {
+			return true;
+		}
 		return false;
 	}
+	
+	
 }
